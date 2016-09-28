@@ -27,8 +27,14 @@ var AppModel = Backbone.Model.extend({
 
     params.library.on('dequeue', function(song) {
       this.get('songQueue').remove(song);
-      var songToCheck = this.get('songQueue').at(0);
-      songToCheck.play();
+      if (this.get('songQueue').length > 0) {
+        var songToCheck = this.get('songQueue').at(0);
+        songToCheck.play();
+      } else {
+        var thisSong = document.getElementById('audio');
+        thisSong.pause();
+        thisSong.currentTime = 0;
+      }
     }, this);
   }
 
