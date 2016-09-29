@@ -8,6 +8,9 @@ var PlayerView = Backbone.View.extend({
   initialize: function() {
     var context = this;
     this.$el.on('ended', function() {
+      // context.on('ended', function() {
+      //   console.log('the sond ended');
+      // })
       context.model.dequeue();
         // .dequeue();
     });
