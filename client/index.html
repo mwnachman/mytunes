@@ -1,11 +1,50 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <style>
+        .song{
+            height: 100px;
+            width: 500px;
+            background-color: #F0F0F0;
+            margin-top: 8px;
+            border-radius: 2px;
+        }
+        .artwork{
+            position: relative;
+            display: inline;
+            float: left;
+        }
+        .artwork > i{
+            position: absolute;
+            top: 22px;
+            left: 22px;
+        }
+
+        .songInfo{
+            float: left;
+            margin-left: 15px;
+            margin-top: 16px;
+        }
+        .songHeader{
+            color: black;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+        }
+        .songDetails{
+            margin-top: 4px;
+            color: #FF122A;
+            font-family: 'Open Sans', sans-serif;
+        }
+    </style>
+  </head>
   <body>
     <!-- Scripts may be placed anywhere on a page. But FYI, they block rendering of elements
      below them until after the scripts load-->
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
     <script src="env/config.js"></script>
     <script src="data/data.js"></script>
@@ -33,15 +72,13 @@
       $.ajax({
         url: mainURL,
         type: 'GET',
-        success: function(data){
-
+        success: function(data) {
           $(function() {
             // set up model objects
             var library = new Songs(data.results);
             console.log(data);
             var app = new AppModel({library: library});
 
-            // console.log(songData);
             // build a view for the top level of the whole app
             var appView = new AppView({model: app});
 
